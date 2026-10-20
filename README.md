@@ -1,4 +1,4 @@
- # Hinglish-sentence-completer-for-casual-whatsapp-chatting-frontend - complete.io
+ # Hinglish sentence completer for casual whatsapp chatting frontend - complete.io
 
 Live Demo: https://hinglish-sentence-completer-for-cas.vercel.app
 
