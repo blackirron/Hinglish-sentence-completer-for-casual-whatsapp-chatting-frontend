@@ -1,5 +1,7 @@
 # complete.io
 
+
+Live Demo: https://hinglish-sentence-completer-for-cas.vercel.app/
 Hinglish sentence completer. Type half a message, get next words and finished sentences from a fine tuned GPT-2 (`blackirron/hinglish-gpt2-finetuned`).
 
     web/    Next.js 16 site. By default the model runs inside the visitor's browser.
