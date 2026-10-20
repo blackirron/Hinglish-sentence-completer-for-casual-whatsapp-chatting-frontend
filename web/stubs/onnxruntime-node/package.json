@@ -1,0 +1,7 @@
+{
+  "name": "onnxruntime-node",
+  "version": "0.0.0-stub",
+  "description": "Empty stand in. This site only runs the model in the browser, so the native Node build (a large download) is never needed.",
+  "main": "index.js",
+  "license": "MIT"
+}
