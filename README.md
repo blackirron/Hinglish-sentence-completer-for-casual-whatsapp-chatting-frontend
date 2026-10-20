@@ -51,3 +51,4 @@ If you would rather have no download for visitors, run the model on a server. `a
 - WebAssembly runtime files are served from this site, not a CDN.
 - Pin the model revision in production so the model files cannot change underneath you.
 - Server mode: secret compared in constant time, strict field whitelists on both layers, size caps, control and bidi stripping, rate limits on both layers, one generation at a time with a short queue, prompts never logged.
+# Hinglish-sentence-completer-for-casual-whatsapp-chatting-frontend
