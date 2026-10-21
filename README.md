@@ -1,5 +1,3 @@
-
-
 # complete.io
 
 **Hinglish sentences, completed for you.** Type half a message the way you would in WhatsApp and get the next word as you type, plus a few finished sentences to pick from. The model runs inside your browser, so what you write never leaves your device.
@@ -48,12 +46,18 @@ Held out chat text, 300 lines and 600 next word positions, seed 7. Reproduce wit
 
 | Model | Perplexity ↓ | Bits per char ↓ | Top-1 ↑ | Top-3 ↑ | Top-5 ↑ | MRR ↑ | Keystroke savings ↑ |
 | --- | --- | --- | --- | --- | --- | --- | --- |
+| GPT-2 (no Hinglish training) | 391.87 | 2.936 | 0.5% | 0.8% | 1.0% | 0.007 | 6.6% |
+| Base `hing-gpt` (before fine tuning) | 119.61 | 1.484 | 21.2% | 33.8% | 40.7% | 0.283 | 62.3% |
 | Fine tuned, fp32 | 12.15 | 0.774 | 39.8% | 58.8% | 64.5% | 0.496 | 82.2% |
 | **Fine tuned, int8 (what the site uses)** | 12.17 | 0.775 | 39.7% | 58.2% | 64.2% | 0.493 | 82.1% |
 
-What the columns mean: top-k is how often the word you were about to type is among the k chips shown, MRR rewards the right word sitting higher in the list, and keystroke savings is the share of characters you would not have to type if you tapped a chip as soon as the right word appeared.
+What the columns mean: top-k is how often the word you were about to type is among the k chips shown, MRR rewards the right word sitting higher in the list, and keystroke savings is the share of characters you would not have to type if you tapped a chip as soon as the right word appeared (an upper bound).
 
-The int8 model, which is 4 times smaller than fp32 (110 MB against 438 MB), gives up almost nothing: perplexity moves from 12.15 to 12.17 and top-5 accuracy by 0.3 points. It also runs about twice as fast on CPU (55 ms against 111 ms per next word call in Colab).
+**Fine tuning is what makes it work.** Compared with the base `hing-gpt`, bits per character drop from 1.484 to 0.774 and top-1 accuracy goes from 21.2% to 39.8%. Plain GPT-2 almost never shows the right word, because it was not trained on Romanised Hindi and splits Hinglish words into pieces (so it is judged mostly on bits per character, which is fair across tokenizers).
+
+**int8 costs almost nothing.** The int8 model is 4 times smaller than fp32 (110 MB against 438 MB). Perplexity moves from 12.15 to 12.17 and top-5 accuracy by 0.3 points, which is within the noise of a 600 position sample. It also runs about twice as fast on CPU (55 ms against 111 ms per next word call in Colab).
+
+Notes on reading these numbers: the base model has no end of text token, so a stand in start token was used for it, which may slightly understate its score. The data is synthetic WhatsApp style dialogue, so real chats will probably score lower. Perplexity is only comparable between models that share a tokenizer.
 
 ### Site
 
