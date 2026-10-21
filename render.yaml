@@ -1,0 +1,18 @@
+# Render Blueprint: New > Blueprint, point it at this repo. Free plan, no card.
+services:
+  - type: web
+    name: complete-io-api
+    runtime: docker
+    dockerfilePath: ./api/Dockerfile
+    dockerContext: ./api
+    plan: free
+    healthCheckPath: /v1/health
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: API_SHARED_SECRET
+        generateValue: true   # copy this value into Vercel as API_SHARED_SECRET
+      - key: MODEL_REPO
+        value: blackirron/hinglish-gpt2-onnx
+      - key: ORT_THREADS
+        value: "1"

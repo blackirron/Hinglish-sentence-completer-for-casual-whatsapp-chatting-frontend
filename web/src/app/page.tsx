@@ -1,0 +1,17 @@
+import { HeroArt } from "@/components/ui/backdrop";
+import { Composer } from "@/components/home/composer";
+
+export default function HomePage() {
+  return (
+    <div>
+      <section className="relative mb-6 md:min-h-[7.5rem]">
+        <HeroArt className="pointer-events-none absolute -top-4 right-0 hidden h-32 w-40 md:block dark:opacity-90" />
+        <h1 className="max-w-2xl text-3xl font-bold leading-tight tracking-tight sm:text-4xl">
+          Complete your thoughts in <span className="text-primary">Hinglish</span>
+        </h1>
+        <p className="mt-3 max-w-xl text-base text-muted">Turn your half typed message into natural, chat friendly Hinglish.</p>
+      </section>
+      <Composer />
+    </div>
+  );
+}
