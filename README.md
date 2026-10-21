@@ -6,6 +6,8 @@ Hinglish sentence completer. Type half a message, get next words and finished se
     tools/  export_onnx.py turns the PyTorch model into a small int8 ONNX package
     api/    Optional FastAPI + onnxruntime server (Render free plan, see render.yaml)
 
+Live Demo: https://hinglish-sentence-completer-for-cas.vercel.app/
+
 ## How it runs for free
 
 Hugging Face Docker Spaces and most free servers cannot hold a GPT-2 model without a paid plan or a card. So the default mode needs no server at all. The site is static pages on Vercel (free) and the browser downloads an int8 copy of the model (about 112 MB, once, then cached) and runs it with Transformers.js and WebAssembly. Nothing the visitor types is sent anywhere, and there is no secret to protect or API to attack.
